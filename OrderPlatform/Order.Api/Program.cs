@@ -16,9 +16,8 @@ bld.Services.AddFastEndpoints();
 bld.Services.Configure<SqlServerOption>(configuration.GetSection("SqlServer"));
 bld.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<SqlServerOption>>().Value);
 
-bld.Services.AddSingleton<IOrderService, OrderService>();
-bld.Services.AddSingleton<IOrderRepository, OrderRepository>();
-bld.Services.AddSingleton<IOrderService, OrderService>();
+bld.Services.AddScoped<IOrderRepository, OrderRepository>();
+bld.Services.AddScoped<IOrderService, OrderService>();
 bld.Services.AddTransient<IEntityStateManager, EntityStateManager>();
 bld.Services.AddScoped<IDataContext, DataContext>();
 

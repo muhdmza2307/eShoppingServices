@@ -16,7 +16,8 @@ public abstract class RepositoryBase<TEntity> :
     private readonly IDataContext _dbContext;
     private DbSet<TEntity> DbContextField => _dbContext.Set<TEntity>();
 
-    protected RepositoryBase(IEntityStateManager entityStateManager, IDataContext dbContext)
+    protected RepositoryBase(IEntityStateManager entityStateManager, 
+        IDataContext dbContext)
     {
         _entityStateManager = entityStateManager;
         _dbContext = dbContext;

@@ -1,5 +1,6 @@
 using FastEndpoints;
 using Microsoft.AspNetCore.Authorization;
+using Order.Common.Enums;
 using Order.Mapping;
 using Order.Models;
 using Order.Services.Interfaces;
@@ -19,6 +20,7 @@ public class CreateOrderEndpoint : Endpoint<CreateOrderRequest, CreateOrderRespo
     public override async Task HandleAsync(CreateOrderRequest req, CancellationToken ct)
     {
         var order = req.ToOrder();
+        order.StatusId = OrderState.Pending;
         
         var result = await _orderService.CreateAsync(order);
         

@@ -26,6 +26,17 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
+        <None Update="appsettings.Development.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
+    </ItemGroup>
+    
+    <ItemGroup>
       <ProjectReference Include="..\Order.Common\Order.Common.csproj" />
       <ProjectReference Include="..\Order.Mapping\Order.Mapping.csproj" />
       <ProjectReference Include="..\Order.Models\Order.Models.csproj" />

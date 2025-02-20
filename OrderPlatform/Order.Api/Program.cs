@@ -14,6 +14,8 @@ var bld = WebApplication.CreateBuilder();
 var configuration = bld.Configuration;
 bld.Services.AddFastEndpoints().SwaggerDocument();
 
+bld.Services.AddEndpointsApiExplorer();
+
 bld.Services.Configure<SqlServerOption>(configuration.GetSection("SqlServer"));
 bld.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<SqlServerOption>>().Value);
 

@@ -8,10 +8,14 @@ using Order.Repositories.Repositories;
 using Order.Repositories.Repositories.Interfaces;
 using Order.Services;
 using Order.Services.Interfaces;
+using FastEndpoints.Swagger;
+using Scalar.AspNetCore;
 
 var bld = WebApplication.CreateBuilder();
 var configuration = bld.Configuration;
 bld.Services.AddFastEndpoints();
+bld.Services.AddFastEndpoints().SwaggerDocument();
+
 
 bld.Services.Configure<SqlServerOption>(configuration.GetSection("SqlServer"));
 bld.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<SqlServerOption>>().Value);
@@ -23,4 +27,11 @@ bld.Services.AddScoped<IDataContext, DataContext>();
 
 var app = bld.Build();
 app.UseFastEndpoints();
+app.UseOpenApi(c => c.Path = "/openapi/v1.json");
+app.MapScalarApiReference(options =>
+{
+    options.Title = "Order API Documentation";
+    options.Theme = ScalarTheme.Mars;
+});
+
 app.Run();

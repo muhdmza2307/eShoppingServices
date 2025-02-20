@@ -1,5 +1,4 @@
 using FastEndpoints;
-using Microsoft.AspNetCore.Authorization;
 using Order.Common.Enums;
 using Order.Mapping;
 using Order.Models;
@@ -7,7 +6,6 @@ using Order.Services.Interfaces;
 
 namespace Order.Api.Endpoints;
 
-[HttpPost("api/orders"), AllowAnonymous]
 public class CreateOrderEndpoint : Endpoint<CreateOrderRequest, CreateOrderResponse>
 {
     private readonly IOrderService _orderService;
@@ -15,6 +13,20 @@ public class CreateOrderEndpoint : Endpoint<CreateOrderRequest, CreateOrderRespo
     public CreateOrderEndpoint(IOrderService orderService)
     {
         _orderService = orderService;
+    }
+    
+    public override void Configure()
+    {
+        Post("/api/orders");
+        AllowAnonymous();
+        Summary(s =>
+        {
+            s.Summary = "Create an order";
+            s.Description = "Create an order details with product purchases";
+            s.Response<CreateOrderResponse>(200, "Order successfully created");
+            s.Response(400, "Bad request - invalid input");
+            s.Response(500, "Internal server error");
+        });
     }
 
     public override async Task HandleAsync(CreateOrderRequest req, CancellationToken ct)

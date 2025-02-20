@@ -8,7 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="FastEndpoints" Version="5.34.0" />
+      <PackageReference Include="FastEndpoints" Version="5.34.0.3-beta" />
+      <PackageReference Include="FastEndpoints.Swagger" Version="5.34.0.3-beta" />
       <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
@@ -21,6 +22,7 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Polly" Version="8.5.2" />
+      <PackageReference Include="Scalar.AspNetCore" Version="2.0.15" />
     </ItemGroup>
 
     <ItemGroup>

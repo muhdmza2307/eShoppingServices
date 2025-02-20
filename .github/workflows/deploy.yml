@@ -1,0 +1,33 @@
+name: Deploy eShopping Services to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-order-platform:
+    name: Deploy Order Platform
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies for Order Platform
+        run: dotnet restore eShoppingServices/OrderPlatform/OrderPlatform.sln
+
+      - name: Build and publish Order Platform
+        run: |
+          dotnet publish eShoppingServices/OrderPlatform/OrderPlatform.sln -c Release -o published-order
+
+      - name: Deploy Order Platform to Azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: "app-be-order-fast-api" # Azure App Service name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: "published-order"

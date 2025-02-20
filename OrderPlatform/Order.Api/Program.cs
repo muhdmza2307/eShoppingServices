@@ -28,6 +28,8 @@ bld.Services.AddTransient<IEntityStateManager, EntityStateManager>();
 bld.Services.AddScoped<IDataContext, DataContext>();
 
 var app = bld.Build();
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+logger.LogInformation("App is starting 1...");
 app.UseFastEndpoints().UseSwaggerGen();
 
 app.UseOpenApi();
@@ -37,7 +39,6 @@ app.UseCors(policy =>
         .AllowAnyMethod()
         .AllowAnyHeader());
 
-app.Run();
+logger.LogInformation("App is starting 2...");
 
-var logger = app.Services.GetRequiredService<ILogger<Program>>();
-logger.LogInformation("App is starting...");
+app.Run();

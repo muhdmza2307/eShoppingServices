@@ -9,9 +9,12 @@ using Order.Repositories.Repositories.Interfaces;
 using Order.Services;
 using Order.Services.Interfaces;
 using FastEndpoints.Swagger;
+using Microsoft.Extensions.Logging;
 
 var bld = WebApplication.CreateBuilder();
 var configuration = bld.Configuration;
+bld.Services.AddCors(); 
+
 bld.Services.AddFastEndpoints().SwaggerDocument();
 
 bld.Services.AddEndpointsApiExplorer();
@@ -25,7 +28,16 @@ bld.Services.AddTransient<IEntityStateManager, EntityStateManager>();
 bld.Services.AddScoped<IDataContext, DataContext>();
 
 var app = bld.Build();
-app.UseFastEndpoints()
-    .UseSwaggerGen();
+app.UseFastEndpoints().UseSwaggerGen();
+
+app.UseOpenApi();
+
+app.UseCors(policy =>
+    policy.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 
 app.Run();
+
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+logger.LogInformation("App is starting...");

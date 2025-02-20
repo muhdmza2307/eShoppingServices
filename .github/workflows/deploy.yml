@@ -19,11 +19,11 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies for Order Platform
-        run: dotnet restore eShoppingServices/OrderPlatform/OrderPlatform.sln
+        run: dotnet restore OrderPlatform/OrderPlatform.sln
 
       - name: Build and publish Order Platform
         run: |
-          dotnet publish eShoppingServices/OrderPlatform/OrderPlatform.sln -c Release -o published-order
+          dotnet publish OrderPlatform/OrderPlatform.sln -c Release -o published-order
 
       - name: Deploy Order Platform to Azure
         uses: azure/webapps-deploy@v3

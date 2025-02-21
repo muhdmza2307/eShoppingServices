@@ -1,3 +1,5 @@
+disabled: true
+
 name: Deploy eShopping Services to Azure
 
 on:

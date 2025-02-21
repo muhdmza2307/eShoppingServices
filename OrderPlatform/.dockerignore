@@ -1,0 +1,18 @@
+# flyctl launch added from .gitignore
+**\.vercel
+
+# flyctl launch added from .idea\.idea.OrderPlatform\.idea\.gitignore
+# Default ignored files
+.idea\.idea.OrderPlatform\.idea\shelf
+.idea\.idea.OrderPlatform\.idea\workspace.xml
+# Rider ignored files
+.idea\.idea.OrderPlatform\.idea\modules.xml
+.idea\.idea.OrderPlatform\.idea\projectSettingsUpdater.xml
+.idea\.idea.OrderPlatform\.idea\contentModel.xml
+.idea\.idea.OrderPlatform\.idea\.idea.PurchasePlatform.iml
+# Editor-based HTTP Client requests
+.idea\.idea.OrderPlatform\.idea\httpRequests
+# Datasource local storage ignored files
+.idea\.idea.OrderPlatform\.idea\dataSources
+.idea\.idea.OrderPlatform\.idea\dataSources.local.xml
+fly.toml

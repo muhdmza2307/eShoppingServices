@@ -9,10 +9,19 @@ using Order.Repositories.Repositories.Interfaces;
 using Order.Services;
 using Order.Services.Interfaces;
 using FastEndpoints.Swagger;
+using Microsoft.Extensions.Configuration;
 using Scalar.AspNetCore;
 
 var bld = WebApplication.CreateBuilder();
 var configuration = bld.Configuration;
+
+// Load configuration based on environment
+bld.Configuration
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{bld.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
 bld.Services.AddFastEndpoints();
 bld.Services.AddFastEndpoints().SwaggerDocument();
 

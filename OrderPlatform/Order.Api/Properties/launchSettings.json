@@ -28,6 +28,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "IIS Express Local": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "scalar/v1",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Local"
+      }
     }
   }
 }

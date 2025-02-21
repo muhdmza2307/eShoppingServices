@@ -9,15 +9,13 @@ using Order.Repositories.Repositories.Interfaces;
 using Order.Services;
 using Order.Services.Interfaces;
 using FastEndpoints.Swagger;
-using Microsoft.Extensions.Logging;
+using Scalar.AspNetCore;
 
 var bld = WebApplication.CreateBuilder();
 var configuration = bld.Configuration;
-bld.Services.AddCors(); 
-
+bld.Services.AddFastEndpoints();
 bld.Services.AddFastEndpoints().SwaggerDocument();
 
-bld.Services.AddEndpointsApiExplorer();
 
 bld.Services.Configure<SqlServerOption>(configuration.GetSection("SqlServer"));
 bld.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<SqlServerOption>>().Value);
@@ -28,17 +26,12 @@ bld.Services.AddTransient<IEntityStateManager, EntityStateManager>();
 bld.Services.AddScoped<IDataContext, DataContext>();
 
 var app = bld.Build();
-var logger = app.Services.GetRequiredService<ILogger<Program>>();
-logger.LogInformation("App is starting 1...");
-app.UseFastEndpoints().UseSwaggerGen();
-
-app.UseOpenApi();
-
-app.UseCors(policy =>
-    policy.AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader());
-
-logger.LogInformation("App is starting 2...");
+app.UseFastEndpoints();
+app.UseOpenApi(c => c.Path = "/openapi/v1.json");
+app.MapScalarApiReference(options =>
+{
+    options.Title = "Order API Documentation";
+    options.Theme = ScalarTheme.Mars;
+});
 
 app.Run();

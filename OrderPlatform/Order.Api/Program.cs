@@ -40,7 +40,8 @@ app.UseOpenApi(c => c.Path = "/openapi/v1.json");
 app.MapScalarApiReference(options =>
 {
     options.Title = "Order API Documentation";
-    options.Theme = ScalarTheme.Mars;
+    options.Theme = ScalarTheme.Moon;
+    options.Layout = ScalarLayout.Modern;
 });
 
 app.Run();

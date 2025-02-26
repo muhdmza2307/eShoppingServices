@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Repositories", "Order
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Services", "Order.Services\Order.Services.csproj", "{158A0FE4-AA22-43A9-B690-242BA7915CB0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{779FEE08-7493-47F1-89D1-C72E9F5F5AD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Api.Tests", "Order.Api.Tests\Order.Api.Tests.csproj", "{ED47443C-4B57-4BDE-8283-C9A6D53C643E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +52,12 @@ Global
 		{158A0FE4-AA22-43A9-B690-242BA7915CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{158A0FE4-AA22-43A9-B690-242BA7915CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{158A0FE4-AA22-43A9-B690-242BA7915CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED47443C-4B57-4BDE-8283-C9A6D53C643E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED47443C-4B57-4BDE-8283-C9A6D53C643E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED47443C-4B57-4BDE-8283-C9A6D53C643E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED47443C-4B57-4BDE-8283-C9A6D53C643E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ED47443C-4B57-4BDE-8283-C9A6D53C643E} = {779FEE08-7493-47F1-89D1-C72E9F5F5AD1}
 	EndGlobalSection
 EndGlobal

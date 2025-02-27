@@ -7,6 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoFixture" Version="5.0.0-preview0012" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+      <PackageReference Include="Moq" Version="4.20.72" />
+      <PackageReference Include="Shouldly" Version="4.3.0" />
+      <PackageReference Include="xunit" Version="2.9.3" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\Order.Data\Order.Data.csproj" />
       <ProjectReference Include="..\Order.Repositories\Order.Repositories.csproj" />
     </ItemGroup>

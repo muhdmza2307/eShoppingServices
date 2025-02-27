@@ -3,7 +3,7 @@ using FastEndpoints;
 using Moq;
 using Order.Api.Endpoints;
 using Order.Models;
-using Order.Services.Interfaces;
+using Order.Repositories.Repositories.Interfaces;
 using Shouldly;
 using Xunit;
 
@@ -12,13 +12,13 @@ namespace Order.Api.Tests.Endpoints;
 public class CreateOrderEndpointTests
 {
     private readonly Fixture _fixture;
-    private readonly Mock<IOrderService> _mockOrderService;
+    private readonly Mock<IOrderRepository> _mockOrderRepository;
 
     public CreateOrderEndpointTests()
     {
         // Setup
         _fixture = new Fixture();
-        _mockOrderService = new Mock<IOrderService>();
+        _mockOrderRepository = new Mock<IOrderRepository>();
     }
     
     [Fact]
@@ -31,12 +31,12 @@ public class CreateOrderEndpointTests
             .Create();
         var request = _fixture.Create<CreateOrderRequest>();
         
-        _mockOrderService
+        _mockOrderRepository
             .Setup(s => 
-                s.CreateAsync(It.IsAny<Data.Entities.Order>()))
+                s.UpsertAsync(It.IsAny<Data.Entities.Order>()))
             .ReturnsAsync(orderEntity);
         
-        var ep = Factory.Create<CreateOrderEndpoint>(_mockOrderService.Object);
+        var ep = Factory.Create<CreateOrderEndpoint>(_mockOrderRepository.Object);
 
         // Act
         await ep.HandleAsync(request, default);
@@ -47,8 +47,8 @@ public class CreateOrderEndpointTests
         response.ShouldNotBeNull();
         response.Id.ShouldBe(orderId);
         
-        _mockOrderService.Verify(s => 
-            s.CreateAsync(It.IsAny<Data.Entities.Order>())
+        _mockOrderRepository.Verify(s => 
+            s.UpsertAsync(It.IsAny<Data.Entities.Order>())
         , Times.Once);
     }
 }

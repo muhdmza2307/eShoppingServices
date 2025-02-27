@@ -40,7 +40,7 @@
       <ProjectReference Include="..\Order.Common\Order.Common.csproj" />
       <ProjectReference Include="..\Order.Mapping\Order.Mapping.csproj" />
       <ProjectReference Include="..\Order.Models\Order.Models.csproj" />
-      <ProjectReference Include="..\Order.Services\Order.Services.csproj" />
+      <ProjectReference Include="..\Order.Repositories\Order.Repositories.csproj" />
     </ItemGroup>
 
 </Project>

@@ -2,17 +2,17 @@ using FastEndpoints;
 using Order.Common.Enums;
 using Order.Mapping;
 using Order.Models;
-using Order.Services.Interfaces;
+using Order.Repositories.Repositories.Interfaces;
 
 namespace Order.Api.Endpoints;
 
 public class CreateOrderEndpoint : Endpoint<CreateOrderRequest, CreateOrderResponse>
 {
-    private readonly IOrderService _orderService;
+    private readonly IOrderRepository _orderRepository;
 
-    public CreateOrderEndpoint(IOrderService orderService)
+    public CreateOrderEndpoint(IOrderRepository orderRepository)
     {
-        _orderService = orderService;
+        _orderRepository = orderRepository;
     }
     
     public override void Configure()
@@ -34,7 +34,7 @@ public class CreateOrderEndpoint : Endpoint<CreateOrderRequest, CreateOrderRespo
         var order = req.ToOrder();
         order.StatusId = OrderState.Pending;
         
-        var result = await _orderService.CreateAsync(order);
+        var result = await _orderRepository.UpsertAsync(order);
         
         await SendOkAsync(new CreateOrderResponse 
             {

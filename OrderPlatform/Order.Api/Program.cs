@@ -6,8 +6,6 @@ using Order.Common.Options;
 using Order.Data;
 using Order.Repositories.Repositories;
 using Order.Repositories.Repositories.Interfaces;
-using Order.Services;
-using Order.Services.Interfaces;
 using FastEndpoints.Swagger;
 using Microsoft.Extensions.Configuration;
 using Scalar.AspNetCore;
@@ -30,7 +28,6 @@ bld.Services.Configure<SqlServerOption>(configuration.GetSection("SqlServer"));
 bld.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<SqlServerOption>>().Value);
 
 bld.Services.AddScoped<IOrderRepository, OrderRepository>();
-bld.Services.AddScoped<IOrderService, OrderService>();
 bld.Services.AddTransient<IEntityStateManager, EntityStateManager>();
 bld.Services.AddScoped<IDataContext, DataContext>();
 

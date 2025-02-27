@@ -16,7 +16,9 @@ COPY ["Order.Data/*.csproj", "Order.Data/"]
 COPY ["Order.Mapping/*.csproj", "Order.Mapping/"]
 COPY ["Order.Models/*.csproj", "Order.Models/"]
 COPY ["Order.Repositories/*.csproj", "Order.Repositories/"]
-COPY ["Order.Services/*.csproj", "Order.Services/"]
+COPY ["Order.Api.Tests/*.csproj", "Order.Api.Tests/"]
+COPY ["Order.Mapping.Tests/*.csproj", "Order.Mapping.Tests/"]
+COPY ["Order.Repositories.Tests/*.csproj", "Order.Repositories.Tests/"]
 # Repeat for additional project folders as needed
 
 RUN dotnet restore "OrderPlatform.sln"

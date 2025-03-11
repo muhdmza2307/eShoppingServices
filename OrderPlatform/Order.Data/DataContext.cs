@@ -13,6 +13,11 @@ public class DataContext : DbContext, IDataContext
     
     private bool IsUnitOfWorkActive { get; set; }
     
+    public DataContext(SqlServerOption? sqlServerOption = null)
+    {
+        _sqlServerOption = sqlServerOption;
+    }
+    
     public void ActivateUnitOfWork() => IsUnitOfWorkActive = true;
     
     public void DeactivateUnitOfWork() => IsUnitOfWorkActive = false;

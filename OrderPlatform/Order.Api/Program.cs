@@ -1,4 +1,5 @@
-﻿using FastEndpoints;
+﻿using Boxed.AspNetCore;
+using FastEndpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -11,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Scalar.AspNetCore;
 
 var bld = WebApplication.CreateBuilder();
-var configuration = bld.Configuration;
 
 // Load configuration based on environment
 bld.Configuration
@@ -20,16 +20,17 @@ bld.Configuration
     .AddJsonFile($"appsettings.{bld.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
     .AddEnvironmentVariables();
 
+var configuration = bld.Configuration;
+
 bld.Services.AddFastEndpoints();
 bld.Services.AddFastEndpoints().SwaggerDocument();
 
-
-bld.Services.Configure<SqlServerOption>(configuration.GetSection("SqlServer"));
-bld.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<SqlServerOption>>().Value);
+bld.Services.ConfigureAndValidateSingleton<SqlServerOption>(configuration.GetSection("SqlServer"));
 
 bld.Services.AddScoped<IOrderRepository, OrderRepository>();
 bld.Services.AddTransient<IEntityStateManager, EntityStateManager>();
 bld.Services.AddScoped<IDataContext, DataContext>();
+
 
 var app = bld.Build();
 app.UseFastEndpoints();

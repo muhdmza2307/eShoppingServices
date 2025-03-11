@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Boxed.AspNetCore" Version="9.0.1" />
       <PackageReference Include="FastEndpoints" Version="5.34.0.3-beta" />
       <PackageReference Include="FastEndpoints.Swagger" Version="5.34.0.3-beta" />
       <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
@@ -27,12 +28,10 @@
 
     <ItemGroup>
         <None Update="appsettings.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="appsettings.Development.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
     

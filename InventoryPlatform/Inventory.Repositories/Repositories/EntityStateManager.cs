@@ -1,9 +1,9 @@
+using Inventory.Data;
+using Inventory.Data.Entities;
+using Inventory.Repositories.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Order.Data;
-using Order.Data.Entities;
-using Order.Repositories.Repositories.Interfaces;
 
-namespace Order.Repositories.Repositories;
+namespace Inventory.Repositories.Repositories;
 
 public class EntityStateManager : IEntityStateManager
 {
